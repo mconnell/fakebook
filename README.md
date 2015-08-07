@@ -16,3 +16,19 @@ Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 ```
 
 If you have trouble connecting to the database, check your db settings in `config/dev.exs`.
+
+
+### Generating a model
+
+Model generator takes 3 or more arguments, the first being the model name, the second the
+database table name, then any schema declarations.
+
+```bash
+  mix phoenix.gen.model Tune tunes name:string
+```
+
+### Run migrations
+
+```bash
+  mix ecto.migrate
+```
