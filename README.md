@@ -32,3 +32,13 @@ database table name, then any schema declarations.
 ```bash
   mix ecto.migrate
 ```
+
+### Adding a new record via the REPL
+
+```bash
+  iex -S mix
+```
+```elixir
+  tune = %Fakebook.Tune {name: "Morven's March"}
+  Fakebook.Repo.insert!(tune)
+```
