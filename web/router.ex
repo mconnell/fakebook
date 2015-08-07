@@ -8,6 +8,10 @@ defmodule Fakebook.Router do
     plug :protect_from_forgery
   end
 
+  pipeline :admin_layout do
+    plug :put_layout, {Fakebook.LayoutView, :admin}
+  end
+
   pipeline :api do
     plug :accepts, ["json"]
   end
@@ -17,6 +21,11 @@ defmodule Fakebook.Router do
 
     get "/", PageController, :index
     get "/tunes", TuneController, :index
+  end
+
+  scope "/admin", Fakebook do
+    pipe_through [:browser, :admin_layout]
+    resources "/tunes", Admin.TuneController
   end
 
   # Other scopes may use custom stacks.

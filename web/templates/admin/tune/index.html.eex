@@ -1,0 +1,11 @@
+<h1>Tunes Admin</h1>
+
+<%= if @tunes |> Enum.empty? do %>
+ <p>There are currently no tunes, pal!</p>
+<% else %>
+  <ul>
+    <%= for tune <- @tunes do %>
+      <li><%= tune.name %></li>
+    <% end %>
+  </ul>
+<% end %>
