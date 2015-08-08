@@ -8,9 +8,9 @@ defmodule Fakebook.Admin.TuneControllerTest do
 
   test "GET / assigns all tunes" do
     tune = %Fakebook.Tune {name: "Morven's March"}
-    Fakebook.Repo.insert!(tune)
+    Repo.insert!(tune)
 
-    expected_tunes = Fakebook.Repo.all(Fakebook.Tune)
+    expected_tunes = Repo.all(Fakebook.Tune)
 
     conn = get conn(), "/admin/tunes"
     assert conn.assigns[:tunes] == expected_tunes

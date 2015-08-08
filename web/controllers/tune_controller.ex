@@ -3,6 +3,6 @@ defmodule Fakebook.TuneController do
 
   def index(conn, _params) do
     render conn, "index.html",
-     tunes: Fakebook.Repo.all(Fakebook.Tune)
+     tunes: Repo.all(Fakebook.Tune)
   end
 end
