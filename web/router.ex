@@ -23,9 +23,9 @@ defmodule Fakebook.Router do
     get "/tunes", TuneController, :index
   end
 
-  scope "/admin", Fakebook do
+  scope "/admin", as: :admin do
     pipe_through [:browser, :admin_layout]
-    resources "/tunes", Admin.TuneController
+    resources "/tunes", Fakebook.Admin.TuneController
   end
 
   # Other scopes may use custom stacks.

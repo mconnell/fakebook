@@ -15,4 +15,14 @@ defmodule Fakebook.Admin.TuneControllerTest do
     conn = get conn(), "/admin/tunes"
     assert conn.assigns[:tunes] == expected_tunes
   end
+
+  test "GET /new renders the new template" do
+    conn = get conn(), "/admin/tunes/new"
+    assert html_response(conn, 200) =~ "New Tune"
+  end
+
+  test "GET /new sets up a tune changeset" do
+    conn = get conn(), "/admin/tunes/new"
+    assert conn.assigns[:changeset] == Fakebook.Tune.changeset(%Fakebook.Tune{})
+  end
 end
