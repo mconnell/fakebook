@@ -32,4 +32,28 @@ defmodule Fakebook.Admin.TuneController do
       tune: tune,
       changeset: Tune.changeset(tune)
   end
+
+  def update(conn, %{"id" => id, "tune" => tune_params}) do
+    tune = Repo.get(Tune, id)
+    changeset = Tune.changeset(tune, tune_params)
+
+    if changeset.valid? do
+      Repo.update!(changeset)
+
+      conn
+      |> put_flash(:info, "Tune updated successfully.")
+      |> redirect(to: admin_tune_path(conn, :index))
+    else
+      render(conn, "edit.html", tune: tune, changeset: changeset)
+    end
+  end
+
+  def delete(conn, %{"id" => id}) do
+    tune = Repo.get(Tune, id)
+    Repo.delete!(tune)
+
+    conn
+    |> put_flash(:info, "Tune deleted successfully.")
+    |> redirect(to: admin_tune_path(conn, :index))
+  end
 end

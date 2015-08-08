@@ -68,4 +68,29 @@ defmodule Fakebook.Admin.TuneControllerTest do
     assert conn.assigns[:changeset] == Fakebook.Tune.changeset(tune)
   end
 
+  # update
+  test "does not update chosen resource and renders errors when data is invalid" do
+    tune = Repo.insert! %Fakebook.Tune{}
+    conn = put conn(), admin_tune_path(conn, :update, tune), tune: @invalid_attrs
+    assert html_response(conn, 200) =~ "Edit Tune"
+  end
+
+  test "updates chosen resource and redirects when data is valid" do
+    tune = Repo.insert! %Fakebook.Tune{}
+
+    conn = put conn(), admin_tune_path(conn, :update, tune), tune: @valid_attrs
+    assert get_flash(conn, :info) == "Tune updated successfully."
+    assert redirected_to(conn) == admin_tune_path(conn, :index)
+    assert Repo.get_by(Fakebook.Tune, @valid_attrs)
+  end
+
+  # delete
+  test "deletes chosen resource" do
+    tune = Repo.insert! %Fakebook.Tune{}
+    conn = delete conn(), admin_tune_path(conn, :delete, tune)
+    assert get_flash(conn, :info) == "Tune deleted successfully."
+    assert redirected_to(conn) == admin_tune_path(conn, :index)
+    refute Repo.get(Fakebook.Tune, tune.id)
+  end
+
 end
