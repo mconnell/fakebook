@@ -43,4 +43,29 @@ defmodule Fakebook.Admin.TuneControllerTest do
     assert redirected_to(conn) == admin_tune_path(conn, :index)
     assert Repo.get_by(Fakebook.Tune, @valid_attrs)
   end
+
+  # edit
+  test "GET /admin/tunes/:id/edit renders the edit template" do
+    tune = Repo.insert! %Fakebook.Tune{}
+
+    conn = get conn(), admin_tune_path(conn, :edit, tune)
+    assert html_response(conn, 200) =~ "Edit Tune"
+  end
+
+  test "GET /admin/tunes/:id/edit assigns tune with matching id" do
+    %Fakebook.Tune {name: "Morven's March"} |> Repo.insert!
+    tune = Repo.get_by(Fakebook.Tune, %{name: "Morven's March"})
+
+    conn = get conn(), admin_tune_path(conn, :edit, tune)
+    assert conn.assigns[:tune] == tune
+  end
+
+  test "GET /admin/tunes/:id/edit assigns changeset" do
+    %Fakebook.Tune {name: "Morven's March"} |> Repo.insert!
+    tune = Repo.get_by(Fakebook.Tune, %{name: "Morven's March"})
+
+    conn = get conn(), admin_tune_path(conn, :edit, tune)
+    assert conn.assigns[:changeset] == Fakebook.Tune.changeset(tune)
+  end
+
 end

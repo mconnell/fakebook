@@ -1,0 +1,3 @@
+<h1>Edit Tune</h1>
+
+<%= render "form.html", changeset: @changeset, action: admin_tune_path(@conn, :update, @tune) %>

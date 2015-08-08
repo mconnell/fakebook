@@ -25,4 +25,11 @@ defmodule Fakebook.Admin.TuneController do
       render(conn, "new.html", changeset: changeset)
     end
   end
+
+  def edit(conn, %{"id" => id}) do
+    tune = Repo.get(Tune, id)
+    render conn, "edit.html",
+      tune: tune,
+      changeset: Tune.changeset(tune)
+  end
 end
