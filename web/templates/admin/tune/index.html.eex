@@ -1,5 +1,7 @@
 <h1>Tunes Admin</h1>
 
+<%= link "New tune", to: admin_tune_path(@conn, :new) %>
+
 <%= if @tunes |> Enum.empty? do %>
  <p>There are currently no tunes, pal!</p>
 <% else %>

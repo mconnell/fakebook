@@ -1,6 +1,10 @@
 defmodule Fakebook.Admin.TuneControllerTest do
   use Fakebook.ConnCase
 
+  @valid_attrs %{name: "Morven's March"}
+  @invalid_attrs %{}
+
+  # index
   test "GET /" do
     conn = get conn(), "/admin/tunes"
     assert html_response(conn, 200) =~ "Tunes"
@@ -16,6 +20,7 @@ defmodule Fakebook.Admin.TuneControllerTest do
     assert conn.assigns[:tunes] == expected_tunes
   end
 
+  # new
   test "GET /new renders the new template" do
     conn = get conn(), "/admin/tunes/new"
     assert html_response(conn, 200) =~ "New Tune"
@@ -24,5 +29,18 @@ defmodule Fakebook.Admin.TuneControllerTest do
   test "GET /new sets up a tune changeset" do
     conn = get conn(), "/admin/tunes/new"
     assert conn.assigns[:changeset] == Fakebook.Tune.changeset(%Fakebook.Tune{})
+  end
+
+  # create
+  test "POST /admin/tunes renders the new template when invalid data is supplied" do
+    conn = post conn(), "/admin/tunes", tune: @invalid_attrs
+    assert html_response(conn, 200) =~ "New Tune"
+  end
+
+  test "POST /admin/tunes creates resource, redirects, and flashes a message when data is valid" do
+    conn = post conn(), "/admin/tunes", tune: @valid_attrs
+    assert get_flash(conn, :info) == "Tune created successfully."
+    assert redirected_to(conn) == admin_tune_path(conn, :index)
+    assert Repo.get_by(Fakebook.Tune, @valid_attrs)
   end
 end

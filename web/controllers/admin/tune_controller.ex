@@ -12,4 +12,17 @@ defmodule Fakebook.Admin.TuneController do
     render conn, "new.html",
       changeset: Tune.changeset(%Tune{})
   end
+
+ def create(conn, %{"tune" => tune_params}) do
+    changeset = Tune.changeset(%Tune{}, tune_params)
+
+    if changeset.valid? do
+      Repo.insert!(changeset)
+      conn
+      |> put_flash(:info, "Tune created successfully.")
+      |> redirect(to: admin_tune_path(conn, :index))
+    else
+      render(conn, "new.html", changeset: changeset)
+    end
+  end
 end
