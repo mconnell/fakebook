@@ -3,8 +3,9 @@ defmodule Fakebook.Admin.TuneControllerTest do
 
   @valid_attrs %{name: "Morven's March"}
   @invalid_attrs %{}
-  @username "admin"
-  @password "secret"
+
+  @username System.get_env("BASIC_AUTH_NAME")
+  @password System.get_env("BASIC_AUTH_PASSWORD")
 
   defp using_basic_auth(conn, username, password) do
     header_content = "Basic " <> Base.encode64("#{username}:#{password}")
