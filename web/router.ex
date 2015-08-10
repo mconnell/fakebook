@@ -9,6 +9,7 @@ defmodule Fakebook.Router do
   end
 
   pipeline :admin_layout do
+    plug BasicAuth, realm: "Admin Area", username: "admin", password: "secret"
     plug :put_layout, {Fakebook.LayoutView, :admin}
   end
 
