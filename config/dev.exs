@@ -33,3 +33,7 @@ config :fakebook, Fakebook.Repo,
   password: "postgres",
   database: "fakebook_dev",
   pool_size: 10 # The amount of database connections in the pool
+
+config :fakebook, :basic_auth,
+  username: "admin",
+  password: "secret"

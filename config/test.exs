@@ -16,3 +16,7 @@ config :fakebook, Fakebook.Repo,
   password: "postgres",
   database: "fakebook_test",
   pool: Ecto.Adapters.SQL.Sandbox
+
+config :fakebook, :basic_auth,
+  username: "admin",
+  password: "secret"
