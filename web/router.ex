@@ -8,7 +8,7 @@ defmodule Fakebook.Router do
     plug :protect_from_forgery
   end
 
-  pipeline :admin_layout do
+  pipeline :admin do
     plug BasicAuth, realm: "Admin Area",
                     username: Application.get_env(:fakebook, :basic_auth)[:username],
                     password: Application.get_env(:fakebook, :basic_auth)[:password]
@@ -28,7 +28,7 @@ defmodule Fakebook.Router do
   end
 
   scope "/admin", as: :admin do
-    pipe_through [:browser, :admin_layout]
+    pipe_through [:admin, :browser]
     resources "/tunes", Fakebook.Admin.TuneController
   end
 
