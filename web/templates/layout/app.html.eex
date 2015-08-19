@@ -10,10 +10,26 @@
   </head>
 
   <body>
-    <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-    <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+    <div class="container">
+      <nav class="navbar navbar-default">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/">FakeBook</a>
+        </div>
 
-    <%= @inner %>
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="/tunes">Tunes</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="container">
+      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
+      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+    </div>
+
+    <div class="container">
+      <%= @inner %>
+    </div>
 
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
     <script>require("web/static/js/app")</script>
