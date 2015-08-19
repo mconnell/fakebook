@@ -26,4 +26,15 @@ defmodule Fakebook.TuneControllerTest do
     assert html_response(conn, 200) =~ "Morven&#39;s March"
     assert conn.assigns[:tune] == tune
   end
+
+  test "GET /api/xml/tune/:id renders music_xml" do
+    %Fakebook.Tune {name: "Morven's March", music_xml: "xml content"} |> Repo.insert!
+    tune = Repo.get_by(Fakebook.Tune, %{name: "Morven's March"})
+
+    conn = conn()
+    |> get xml_api_tune_path(conn, :show, tune)
+
+    assert response(conn, 200) =~ "xml content"
+    assert conn.assigns[:tune] == tune
+  end
 end

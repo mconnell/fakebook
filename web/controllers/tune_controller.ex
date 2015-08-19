@@ -8,6 +8,6 @@ defmodule Fakebook.TuneController do
 
   def show(conn, %{"id" => id}) do
     tune = Repo.get(Fakebook.Tune, id)
-    render(conn, "show.html", tune: tune)
+    render(conn, :show, tune: tune)
   end
 end

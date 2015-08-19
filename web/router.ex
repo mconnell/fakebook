@@ -20,11 +20,20 @@ defmodule Fakebook.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :xml_api do
+    plug :accepts, ["xml"]
+  end
+
   scope "/", Fakebook do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
     resources "/tunes", TuneController
+  end
+
+  scope "/api/xml/", as: :xml_api, alias: Fakebook do
+    pipe_through [:xml_api]
+    resources "/tunes", TuneController, only: [:show]
   end
 
   scope "/admin", as: :admin do

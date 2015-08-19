@@ -1,1 +1,2 @@
 <h1><%= @tune.name %></h1>
+<%= link "View as musicXML", to: xml_api_tune_path(@conn, :show, @tune) %>
