@@ -15,4 +15,15 @@ defmodule Fakebook.TuneControllerTest do
     conn = get conn(), "/tunes"
     assert conn.assigns[:tunes] == expected_tunes
   end
+
+  test "GET /tune/:id renders ok" do
+    %Fakebook.Tune {name: "Morven's March"} |> Repo.insert!
+    tune = Repo.get_by(Fakebook.Tune, %{name: "Morven's March"})
+
+    conn = conn()
+    |> get tune_path(conn, :show, tune)
+
+    assert html_response(conn, 200) =~ "Morven&#39;s March"
+    assert conn.assigns[:tune] == tune
+  end
 end

@@ -5,7 +5,7 @@
 <% else %>
   <ul>
     <%= for tune <- @tunes do %>
-      <li><%= tune.name %></li>
+      <li><%= link tune.name, to: tune_path(@conn, :show, tune) %></li>
     <% end %>
   </ul>
 <% end %>

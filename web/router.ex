@@ -24,7 +24,7 @@ defmodule Fakebook.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
-    get "/tunes", TuneController, :index
+    resources "/tunes", TuneController
   end
 
   scope "/admin", as: :admin do

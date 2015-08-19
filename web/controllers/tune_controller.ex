@@ -5,4 +5,9 @@ defmodule Fakebook.TuneController do
     render conn, "index.html",
      tunes: Repo.all(Fakebook.Tune)
   end
+
+  def show(conn, %{"id" => id}) do
+    tune = Repo.get(Fakebook.Tune, id)
+    render(conn, "show.html", tune: tune)
+  end
 end
