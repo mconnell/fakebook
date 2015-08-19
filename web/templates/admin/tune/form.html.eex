@@ -16,6 +16,11 @@
   </div>
 
   <div class="form-group">
+    <label>Description</label>
+    <%= textarea form, :description, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
     <label>Music XML</label>
     <%= textarea form, :music_xml, class: "form-control" %>
   </div>

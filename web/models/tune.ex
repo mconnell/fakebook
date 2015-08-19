@@ -3,13 +3,14 @@ defmodule Fakebook.Tune do
 
   schema "tunes" do
     field :name, :string
+    field :description, :string
     field :music_xml, :string
 
     timestamps
   end
 
   @required_fields ~w(name)
-  @optional_fields ~w(music_xml)
+  @optional_fields ~w(description music_xml)
 
   @doc """
   Creates a changeset based on the `model` and `params`.
