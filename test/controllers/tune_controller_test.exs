@@ -7,7 +7,7 @@ defmodule Fakebook.TuneControllerTest do
   end
 
   test "GET / assigns all tunes" do
-    tune = %Fakebook.Tune {name: "Morven's March"}
+    tune = %Fakebook.Tune {name: "Morven's March", description: "3/2 March"}
     Fakebook.Repo.insert!(tune)
 
     expected_tunes = Fakebook.Repo.all(Fakebook.Tune)
@@ -17,7 +17,7 @@ defmodule Fakebook.TuneControllerTest do
   end
 
   test "GET /tune/:id renders ok" do
-    %Fakebook.Tune {name: "Morven's March"} |> Repo.insert!
+    %Fakebook.Tune {name: "Morven's March", description: "3/2 March"} |> Repo.insert!
     tune = Repo.get_by(Fakebook.Tune, %{name: "Morven's March"})
 
     conn = conn()
