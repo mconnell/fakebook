@@ -3,28 +3,28 @@
 </div>
 
 <div class="row">
-  <div class="col-md-10">
+  <div class="col-md-9">
     <%= if String.length(@tune.description) > 0 do %>
       <%= @tune.description |> Earmark.to_html |> raw %>
     <% else %>
       <p>No description available for this tune.</p>
     <% end %>
   </div>
-  <div class="col-md-2 text-right">
+  <div class="col-md-3 text-right">
     <%= link "View musicXML", to: xml_api_tune_path(@conn, :show, @tune), class: "btn btn-default btn-xs" %>
   </div>
 </div>
 
 <hr>
 
-<div class="row">
+<div class="row score">
   <div class="col-md-12">
     <div class="panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title">Score</h3>
       </div>
-      <div class="panel-body">
-        music should appear here!
+      <div class="panel-body text-center">
+        <%= tag(:img, src: static_path(@conn, "/images/scores/#{@tune.id}.png"), class: "score") %>
       </div>
     </div>
   </div>
