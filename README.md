@@ -42,3 +42,8 @@ database table name, then any schema declarations.
   tune = %Fakebook.Tune {name: "Morven's March"}
   Fakebook.Repo.insert!(tune)
 ```
+
+### lilypond commands
+
+    musicxml2ly stb.xml
+    lilypond --png --output web/static/assets/images/scores/stb stb.ly
