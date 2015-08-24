@@ -35,7 +35,7 @@ defmodule Fakebook.Mixfile do
      {:phoenix_html, "~> 1.4"},
      {:phoenix_live_reload, "~> 0.5", only: :dev},
      {:cowboy, "~> 1.0"},
-     {:basic_auth, ">= 0.0.2"},
+     {:basic_auth, "~> 1.0.0"},
      {:earmark, "~> 0.1.17"}]
   end
 end
